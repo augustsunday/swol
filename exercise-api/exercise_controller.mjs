@@ -1,37 +1,51 @@
 import 'dotenv/config';
+import * as movies from './exercise_model.mjs';
 import express from 'express';
-import asyncHandler from 'express-async-handler';
-import * as users from './exercise_model.mjs';
-
-const app = express();
 
 const PORT = process.env.PORT;
 
-app.get("/create",
-    asyncHandler(async (req, res) => {
-        const new_user = await users.addUser(req.query);
-        res.send(new_user);
-    }))
+const app = express();
+
+app.use(express.json());
+
+/**
+ * Create a new movie with the title, year and language provided in the body
+ */
+app.post('/movies', (req, res) => {
+    res.status(501).send({ Error: "Not implemented yet" });
+});
 
 
-app.get("/retrieve",
-    asyncHandler(async (req, res) => {
-        const new_query = await users.retrieveUser(req.query);
-        res.send(new_query);
-    }))
+/**
+ * Retrive the movie corresponding to the ID provided in the URL.
+ */
+app.get('/movies/:_id', (req, res) => {
+    res.status(501).send({ Error: "Not implemented yet" });
+});
 
-app.get("/update",
-    asyncHandler(async (req, res) => {
-        const {_id, ...update} = req.query;
-        const resultVal = await users.updateUser({_id}, update);
-        res.send( (resultVal > 0) ? { "updateCount": resultVal } : { "Error" : "Not found"})
-    }))
+/**
+ * Retrieve movies. 
+ * If the query parameters include a year, then only the movies for that year are returned.
+ * Otherwise, all movies are returned.
+ */
+app.get('/movies', (req, res) => {
+    res.status(501).send({ Error: "Not implemented yet" });
+});
 
-app.get("/delete",
-    asyncHandler(async (req, res) => {
-        const resultVal = await users.deleteUser(req.query);
-        res.send( { "deletedCount": resultVal } )
-    }))
+/**
+ * Update the movie whose id is provided in the path parameter and set
+ * its title, year and language to the values provided in the body.
+ */
+app.put('/movies/:_id', (req, res) => {
+    res.status(501).send({ Error: "Not implemented yet" });
+});
+
+/**
+ * Delete the movie whose id is provided in the query parameters
+ */
+app.delete('/movies/:_id', (req, res) => {
+    res.status(501).send({ Error: "Not implemented yet" });
+});
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`);

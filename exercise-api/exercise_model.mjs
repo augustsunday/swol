@@ -6,39 +6,27 @@ mongoose.connect(
     { useNewUrlParser: true }
 );
 
-const db = mongoose.connection;
 
+// Connect to to the database
+const db = mongoose.connection;
+// The open event is called when the database connection successfully opens
 db.once("open", () => {
     console.log("Successfully connected to MongoDB using Mongoose!");
 });
 
-const exerciseSchema = mongoose.Schema({
-    name: {type: String, required: true},
-    age: {type: Number, required: true},
-    email: {type: String, required: true},
-    phoneNumber: {type: Number, required: false},
-})
+/**
+ * Define the schema
+ */
+const movieSchema = mongoose.Schema({
+    name: { type: String, required: true, minLength: 1 },
+    reps: { type: Number, required: true, min: 1 },
+    weight: { type: Number, required: true, min: 1 },
+    unit: { type: String, required: true, enum: ["kgs", "lbs"]},
+    date: { type: String, required: true }
+});
 
-const Exercise = mongoose.model("User", exerciseSchema)
+/**
+ * Compile the model from the schema. This must be done after defining the schema.
+ */
+const Movie = mongoose.model("Movie", movieSchema);
 
-const addUser = async (user_data) => {
-    const user = new User(user_data);
-    return user.save()
-}
-
-const retrieveUser = async (filter) => {
-    const query = User.find(filter)
-    return query.exec()
-}
-
-const updateUser = async (filter, update) => {
-    const result = await User.updateOne(filter,update);
-    return result.modifiedCount;
-}
-
-const deleteUser = async (filter) => {
-    const result = await User.deleteMany(filter);
-    return result.deletedCount;
-}
-
-export {addUser, retrieveUser, updateUser, deleteUser}
