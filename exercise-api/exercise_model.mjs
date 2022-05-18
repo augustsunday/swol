@@ -2,6 +2,7 @@
 
 import mongoose from 'mongoose';
 import 'dotenv/config';
+import e from "express";
 
 mongoose.connect(
     process.env.MONGODB_CONNECT_STRING,
@@ -36,4 +37,13 @@ const retrieveExercise = async (filter) => {
     return query.exec()
 }
 
-export {addExercise, retrieveExercise}
+const updateExercise = async (filter, update) => {
+    console.log('Received Update Request')
+    console.log('ID Received: ', filter)
+    console.log("Parameters Received: ", update)
+    const result = await Exercise.updateOne(filter,update, {runValidators: true});
+    return result.modifiedCount;
+}
+
+
+export {addExercise, retrieveExercise, updateExercise}

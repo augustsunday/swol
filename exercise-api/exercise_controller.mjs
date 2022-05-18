@@ -32,17 +32,20 @@ app.get("/exercises",
  */
 app.get("/exercises/:_id",
     expressAsyncHandler(async (req, res, next) => {
-            const new_query = await retrieveExercise(req.params);
+            const new_query = await exercise.retrieveExercise(req.params);
             res.status(200).type("application/json").send(new_query);
     }))
 
 /**
- * Update the movie whose id is provided in the path parameter and set
- * its title, year and language to the values provided in the body.
+ * Update the exercise whose id is provided in the path parameter and set
+ * its name, reps, weight, units, and date to the values provided in the body.
  */
-app.put('/movies/:_id', (req, res, next) => {
-    res.status(501).send({ Error: "Not implemented yet" });
-});
+app.put('/exercises/:_id',
+    expressAsyncHandler(async (req, res, next) => {
+        const resultVal = await exercise.updateExercise(req.params, req.body);
+        const new_query = await exercise.retrieveExercise(req.params);
+        res.status(200).type("application/json").send(new_query);
+}));
 
 /**
  * Delete the movie whose id is provided in the query parameters
