@@ -1,6 +1,7 @@
 import 'dotenv/config';
-import * as movies from './exercise_model.mjs';
+import * as exercise from './exercise_model.mjs';
 import express from 'express';
+import expressAsyncHandler from "express-async-handler";
 
 const PORT = process.env.PORT;
 
@@ -9,11 +10,14 @@ const app = express();
 app.use(express.json());
 
 /**
- * Create a new movie with the title, year and language provided in the body
+ * Create a new exercise record
  */
-app.post('/movies', (req, res) => {
-    res.status(501).send({ Error: "Not implemented yet" });
-});
+app.post("/exercises",
+    expressAsyncHandler(async (req, res) => {
+        const new_exercise = await exercise.addExercise(req.body);
+        console.log(new_exercise)
+        res.status(201).send(new_exercise);
+    }))
 
 
 /**

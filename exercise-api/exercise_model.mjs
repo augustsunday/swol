@@ -14,19 +14,19 @@ db.once("open", () => {
     console.log("Successfully connected to MongoDB using Mongoose!");
 });
 
-/**
- * Define the schema
- */
-const movieSchema = mongoose.Schema({
+const exerciseSchema = mongoose.Schema({
     name: { type: String, required: true, minLength: 1 },
     reps: { type: Number, required: true, min: 1 },
     weight: { type: Number, required: true, min: 1 },
     unit: { type: String, required: true, enum: ["kgs", "lbs"]},
-    date: { type: String, required: true }
+    date: { type: String, required: true, validate: /^\d\d-\d\d-\d\d$/ }
 });
 
-/**
- * Compile the model from the schema. This must be done after defining the schema.
- */
-const Movie = mongoose.model("Movie", movieSchema);
+const Exercise = mongoose.model("Exercise", exerciseSchema);
 
+const addExercise = async (exercise_data) => {
+    const exercise = new Exercise(exercise_data);
+    return exercise.save()
+}
+
+export {addExercise}

@@ -211,3 +211,15 @@ GET http://localhost:3000/exercises HTTP/1.1
 
 ### Request 20: Delete for non-existent ID. 404 status code
 DELETE http://localhost:3000/exercises/6281b322c7c796ea344f05ee HTTP/1.1
+
+### Request 21: Try invalid exercise
+POST http://localhost:3000/exercises HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Squat",
+  "reps": 0,
+  "weight": 30,
+  "unit": "lbs",
+  "date": "09-18-22"
+}
