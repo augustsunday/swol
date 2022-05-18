@@ -14,9 +14,13 @@ app.use(express.json());
  */
 app.post("/exercises",
     expressAsyncHandler(async (req, res) => {
-        const new_exercise = await exercise.addExercise(req.body);
-        console.log(new_exercise)
-        res.status(201).send(new_exercise);
+        try {
+            const new_exercise = await exercise.addExercise(req.body);
+            res.status(201).type("application/json").send(new_exercise);
+        } catch {
+            console.log("Validation Error")
+            res.status(400).type("application/json").send({ Error: "Invalid request"})
+        }
     }))
 
 
