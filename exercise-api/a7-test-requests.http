@@ -224,8 +224,3 @@ content-type: application/json
   "date": "09-18-22"
 }
 
-### Request 17: Retreive by ID
-GET  http://localhost:3000/exercises/62845431fd0d7bade906b5ef HTTP/1.1
-
-### Request 17: Retreive by ID
-GET  http://localhost:3000/exercises/62845431fd0d7bade906b5e HTTP/1.1
