@@ -2,6 +2,7 @@ import 'dotenv/config';
 import * as exercise from './exercise_model.mjs';
 import express from 'express';
 import expressAsyncHandler from "express-async-handler";
+import {retrieveExercise} from "./exercise_model.mjs";
 
 const PORT = process.env.PORT;
 
@@ -24,21 +25,28 @@ app.post("/exercises",
     }))
 
 
-/**
- * Retrive the movie corresponding to the ID provided in the URL.
- */
-app.get('/movies/:_id', (req, res) => {
-    res.status(501).send({ Error: "Not implemented yet" });
-});
 
 /**
- * Retrieve movies. 
- * If the query parameters include a year, then only the movies for that year are returned.
- * Otherwise, all movies are returned.
+ * Retrieve all exercises.
  */
-app.get('/movies', (req, res) => {
-    res.status(501).send({ Error: "Not implemented yet" });
-});
+app.get("/exercises",
+    expressAsyncHandler(async (req, res) => {
+        const new_query = await retrieveExercise({});
+        res.status(200).type("application/json").send(new_query);
+    }))
+
+/**
+ * Retrieve the exercise corresponding to the ID provided in the URL.
+ */
+app.get("/exercises/:_id",
+    expressAsyncHandler(async (req, res) => {
+        try {
+            const new_query = await retrieveExercise(req.params);
+            res.status(200).type("application/json").send(new_query);
+        } catch {
+            res.status(404).type("application/json").send({ Error: "Not found"})
+        }
+    }))
 
 /**
  * Update the movie whose id is provided in the path parameter and set

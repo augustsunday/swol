@@ -1,3 +1,5 @@
+// noinspection UnnecessaryLocalVariableJS
+
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
@@ -29,4 +31,9 @@ const addExercise = async (exercise_data) => {
     return exercise.save()
 }
 
-export {addExercise}
+const retrieveExercise = async (filter) => {
+    const query = Exercise.find(filter)
+    return query.exec()
+}
+
+export {addExercise, retrieveExercise}
