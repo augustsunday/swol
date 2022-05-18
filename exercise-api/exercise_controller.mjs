@@ -2,7 +2,6 @@ import 'dotenv/config';
 import * as exercise from './exercise_model.mjs';
 import express from 'express';
 import expressAsyncHandler from "express-async-handler";
-import {retrieveExercise} from "./exercise_model.mjs";
 
 const PORT = process.env.PORT;
 
@@ -24,7 +23,7 @@ app.post("/exercises",
  */
 app.get("/exercises",
     expressAsyncHandler(async (req, res, next) => {
-        const new_query = await retrieveExercise({});
+        const new_query = await exercise.retrieveExercise({});
         res.status(200).type("application/json").send(new_query);
     }))
 
@@ -55,12 +54,11 @@ app.delete('/movies/:_id', (req, res, next) => {
 app.use((err, req, res, next) => {
     console.log("Error: ", err.name)
     switch (err.name) {
-        case "CastError":
+        case "ReferenceError":
             res.status(404).type("application/json").send({ Error: "Not found"})
             break;
 
         case "ValidationError":
-            console.log("made it")
             res.status(400).type("application/json").send({ Error: "Invalid request"})
             break;
 
