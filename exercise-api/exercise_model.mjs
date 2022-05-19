@@ -40,13 +40,20 @@ const retrieveExercise = async (filter) => {
     return query.exec()
 }
 
+const retrieveExerciseByID = async (filter) => {
+    const query = Exercise.findById(filter)
+    return query.exec()
+}
+
 const updateExercise = async (filter, update) => {
-    console.log('Received Update Request')
-    console.log('ID Received: ', filter)
-    console.log("Parameters Received: ", update)
     const result = await Exercise.updateOne(filter,update, {runValidators: true});
     return result;
 }
 
+const deleteExercise = async (filter) => {
+    const result = await Exercise.deleteOne(filter)
+    return result;
+}
 
-export {addExercise, retrieveExercise, updateExercise}
+
+export {addExercise, retrieveExercise, retrieveExerciseByID, updateExercise, deleteExercise}

@@ -2,6 +2,7 @@ import 'dotenv/config';
 import * as exercise from './exercise_model.mjs';
 import express from 'express';
 import expressAsyncHandler from "express-async-handler";
+import e from "express";
 
 const PORT = process.env.PORT;
 
@@ -32,8 +33,8 @@ app.get("/exercises",
  */
 app.get("/exercises/:_id",
     expressAsyncHandler(async (req, res, next) => {
-            const new_query = await exercise.retrieveExercise(req.params);
-            if (new_query.length === 0) {
+            const new_query = await exercise.retrieveExerciseByID(req.params);
+            if (!new_query) {
                 throw ReferenceError
             }
             res.status(200).type("application/json").send(new_query);
@@ -57,7 +58,7 @@ app.put('/exercises/:_id',(req, res, next)=>{
 /**
  * Update the exercise whose id is provided in the path parameter and set
  * its name, reps, weight, units, and date to the values provided in the body.
- * Also see if any records were matched in the update. If not throw an error.
+ * Also see if any records were matched in the update. If not throw a 'not found' error.
  */
 app.put('/exercises/:_id',
     expressAsyncHandler(async (req, res, next) => {
@@ -70,12 +71,29 @@ app.put('/exercises/:_id',
 }));
 
 /**
- * Delete the movie whose id is provided in the query parameters
+ * Delete the exercise whose id is provided in the query parameters
  */
-app.delete('/movies/:_id', (req, res, next) => {
-    res.status(501).send({ Error: "Not implemented yet" });
-});
+app.delete('/exercises/:_id',
+    expressAsyncHandler(async (req, res, next) => {
+        const delete_result = await exercise.deleteExercise(req.params)
+        if (delete_result.deletedCount === 0) {
+            throw ReferenceError
+        }
+        res.status(204).send()
+}));
 
+
+/**
+ * Errors:
+ * ReferenceError - Attempted to retrieve/update/delete a non-existent ID
+ *
+ * ValidationError - Something went wrong with an update or create request. Either the request didn't have all the
+ *                  required data items, or one of those data items tripped the validation checks in the mongoose schema.
+ *
+ * CastError - During an update/create request an argument of the wrong type was passed to the mongoose schema for one or
+ *             more of the data fields. For example NaN passed to 'reps'.
+ *
+ */
 app.use((err, req, res, next) => {
     console.log("Error: ", err.name)
     console.log(err)
