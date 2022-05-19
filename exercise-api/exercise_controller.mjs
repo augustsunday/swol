@@ -44,6 +44,10 @@ app.put('/exercises/:_id',
     expressAsyncHandler(async (req, res, next) => {
         const resultVal = await exercise.updateExercise(req.params, req.body);
         const new_query = await exercise.retrieveExercise(req.params);
+        console.log(new_query)
+        if (length(new_query) === 0) {
+            throw ReferenceError
+        }
         res.status(200).type("application/json").send(new_query);
 }));
 
