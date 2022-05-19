@@ -33,7 +33,7 @@ app.get("/exercises",
 app.get("/exercises/:_id",
     expressAsyncHandler(async (req, res, next) => {
             const new_query = await exercise.retrieveExercise(req.params);
-            if (new_query == []) {
+            if (new_query.length === 0) {
                 throw ReferenceError
             }
             res.status(200).type("application/json").send(new_query);

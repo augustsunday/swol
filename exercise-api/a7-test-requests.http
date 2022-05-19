@@ -167,7 +167,7 @@ content-type: application/json
 ### Request 15: Update with invalid property. 400 status code
 ### NOTE: Change the value of ID in the following URL to the ID assigned
 ###     to Deadlift with date 01-25-22.
-PUT  http://localhost:3000/exercises/62859a5133fc4be2bc54c23c HTTP/1.1
+PUT  http://localhost:3000/exercises/6285a7284cedf8b3a5e03066 HTTP/1.1
 content-type: application/json
 
 {
@@ -192,7 +192,7 @@ content-type: application/json
 
 
 ### Request 17: Retreive for non-existent ID. 404 status code
-GET  http://localhost:3000/exercises/6281146f945176f317005603 HTTP/1.1
+GET  http://localhost:3000/exercises/62859a5133fc4be2bc54c23c HTTP/1.1
 
 ### Request 11: Delete the Deadlift with date 01-25-22.
 ### NOTE: Change the value of ID in the following URL to the ID assigned
