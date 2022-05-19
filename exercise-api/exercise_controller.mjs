@@ -33,21 +33,39 @@ app.get("/exercises",
 app.get("/exercises/:_id",
     expressAsyncHandler(async (req, res, next) => {
             const new_query = await exercise.retrieveExercise(req.params);
+            if (new_query == []) {
+                throw ReferenceError
+            }
             res.status(200).type("application/json").send(new_query);
     }))
 
 /**
+ * Pre-validation for update. Make sure that name, reps, weight, units, and date are provided in the body.
+ */
+app.put('/exercises/:_id',(req, res, next)=>{
+    const required_data = ['name', 'reps', 'weight', 'unit', 'date'];
+    required_data.forEach((item, index) => {
+        if (req.body[item] == undefined) {
+            let e = new Error('Update request is missing one or more required fields')
+            e.name = 'ValidationError'
+            throw e
+        }
+    })
+    next();
+})
+
+/**
  * Update the exercise whose id is provided in the path parameter and set
  * its name, reps, weight, units, and date to the values provided in the body.
+ * Also see if any records were matched in the update. If not throw an error.
  */
 app.put('/exercises/:_id',
     expressAsyncHandler(async (req, res, next) => {
-        const resultVal = await exercise.updateExercise(req.params, req.body);
-        const new_query = await exercise.retrieveExercise(req.params);
-        console.log(new_query)
-        if (length(new_query) === 0) {
+        const update_result = await exercise.updateExercise(req.params, req.body);
+        if (update_result.matchedCount === 0) {
             throw ReferenceError
         }
+        const new_query = await exercise.retrieveExercise(req.params);
         res.status(200).type("application/json").send(new_query);
 }));
 
@@ -60,12 +78,17 @@ app.delete('/movies/:_id', (req, res, next) => {
 
 app.use((err, req, res, next) => {
     console.log("Error: ", err.name)
+    console.log(err)
     switch (err.name) {
         case "ReferenceError":
             res.status(404).type("application/json").send({ Error: "Not found"})
             break;
 
         case "ValidationError":
+            res.status(400).type("application/json").send({ Error: "Invalid request"})
+            break;
+
+        case "CastError":
             res.status(400).type("application/json").send({ Error: "Invalid request"})
             break;
 

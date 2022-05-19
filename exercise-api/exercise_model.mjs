@@ -27,6 +27,9 @@ const exerciseSchema = mongoose.Schema({
 
 const Exercise = mongoose.model("Exercise", exerciseSchema);
 
+
+console.log(Object.keys(exerciseSchema.paths))
+
 const addExercise = async (exercise_data) => {
     const exercise = new Exercise(exercise_data);
     return exercise.save()
@@ -42,7 +45,7 @@ const updateExercise = async (filter, update) => {
     console.log('ID Received: ', filter)
     console.log("Parameters Received: ", update)
     const result = await Exercise.updateOne(filter,update, {runValidators: true});
-    return result.modifiedCount;
+    return result;
 }
 
 
