@@ -2,8 +2,8 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import AddMoviePage from './pages/AddMoviePage';
-import EditMoviePage from './pages/EditMoviePage';
+import AddExercisePage from './pages/AddExercisePage';
+import EditExercisePage from './pages/EditExercisePage';
 
 function App() {
 
@@ -14,11 +14,11 @@ function App() {
           <Route path="/" exact>
             <HomePage  />
           </Route>
-          <Route path="/add-movie">
-            <AddMoviePage />
+          <Route path="/add-exercise">
+            <AddExercisePage />
           </Route>
-          <Route path="/edit-movie">
-            <EditMoviePage />
+          <Route path="/edit-exercise">
+            <EditExercisePage />
           </Route>
           </div>
       </Router>

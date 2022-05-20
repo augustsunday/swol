@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-export const AddMoviePage = () => {
+export const AddExercisePage = () => {
 
     const [title, setTitle] = useState('');
     const [year, setYear] = useState('');
     const [language, setLanguage] = useState('');
 
-    const addMovie = async () => {
+    const addExercise = async () => {
     
     };
 
     return (
         <div>
-            <h1>Add Movie</h1>
+            <h1>Add Exercise</h1>
             <input
                 type="text"
                 placeholder="Enter title here"
@@ -30,10 +30,10 @@ export const AddMoviePage = () => {
                 value={language}
                 onChange={e => setLanguage(e.target.value)} />
             <button
-                onClick={addMovie}
+                onClick={addExercise}
             >Add</button>
         </div>
     );
 }
 
-export default AddMoviePage;
+export default AddExercisePage;

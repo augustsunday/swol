@@ -1,9 +1,9 @@
 import React from 'react';
-import Movie from './Movie';
+import Exercise from './Exercise';
 
-function MovieList({ movies }) {
+function ExerciseList({ exercises }) {
     return (
-        <table id="movies">
+        <table id="exercises">
             <thead>
                 <tr>
                     <th>Title</th>
@@ -14,11 +14,11 @@ function MovieList({ movies }) {
                 </tr>
             </thead>
             <tbody>
-                {movies.map((movie, i) => <Movie movie={movie}
+                {exercises.map((exercise, i) => <Exercise exercise={exercise}
                     key={i} />)}
             </tbody>
         </table>
     );
 }
 
-export default MovieList;
+export default ExerciseList;
