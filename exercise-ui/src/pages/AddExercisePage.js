@@ -2,13 +2,29 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
 export const AddExercisePage = () => {
+    const history = useHistory();
 
-    const [title, setTitle] = useState('');
-    const [year, setYear] = useState('');
-    const [language, setLanguage] = useState('');
+    const [name, setName] = useState('');
+    const [reps, setReps] = useState('');
+    const [weight, setWeight] = useState('');
+    const [unit, setUnit] = useState('');
+    const [date, setDate] = useState('');
 
     const addExercise = async () => {
-    
+        const newExercise = {name, reps, weight, unit, date};
+        const response = await fetch('/exercises', {
+            method: 'POST',
+            body: JSON.stringify(newExercise),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if(response.status === 201){
+            alert("Successfully added the exercise!");
+        } else {
+            alert(`Failed to add exercise, status code = ${response.status}`);
+        }
+        history.push("/");
     };
 
     return (
@@ -16,19 +32,29 @@ export const AddExercisePage = () => {
             <h1>Add Exercise</h1>
             <input
                 type="text"
-                placeholder="Enter title here"
-                value={title}
-                onChange={e => setTitle(e.target.value)} />
-            <input
-                type="number"
-                value={year}
-                placeholder="Enter year here"
-                onChange={e => setYear(e.target.value)} />
+                placeholder="Enter name here"
+                value={name}
+                onChange={e => setName(e.target.value)} />
             <input
                 type="text"
-                placeholder="Enter language here"
-                value={language}
-                onChange={e => setLanguage(e.target.value)} />
+                placeholder="Enter reps here"
+                value={reps}
+                onChange={e => setReps(e.target.value)} />
+            <input
+                type="text"
+                placeholder="Enter weight here"
+                value={weight}
+                onChange={e => setWeight(e.target.value)} />
+            <input
+                type="text"
+                placeholder="Enter unit here"
+                value={unit}
+                onChange={e => setUnit(e.target.value)} />
+            <input
+                type="text"
+                placeholder="Enter date here"
+                value={date}
+                onChange={e => setDate(e.target.value)} />
             <button
                 onClick={addExercise}
             >Add</button>
