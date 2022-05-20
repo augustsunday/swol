@@ -6,11 +6,11 @@ function ExerciseList({ exercises }) {
         <table id="exercises">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Year</th>
-                    <th>Language</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Name</th>
+                    <th>Reps</th>
+                    <th>Weight</th>
+                    <th>Unit</th>
+                    <th>Date</th>
                 </tr>
             </thead>
             <tbody>
