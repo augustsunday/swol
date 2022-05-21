@@ -12,7 +12,7 @@ function Exercise({ exercise, onDelete, onEdit }) {
             <td>{exercise.date}</td>
             <td>Edit</td>
             <td><MdDeleteForever onClick={ () => onDelete(exercise._id)}/></td>
-            <td><BsPencilFill onClick={ () => onEdit(exercise._id)}/></td>
+            <td><BsPencilFill onClick={ () => onEdit(exercise)}/></td>
         </tr>
     );
 }

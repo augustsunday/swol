@@ -1,31 +1,28 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-export const EditExercisePage = ({exercise}) => {
+export const EditExercisePage = ({exerciseToEdit}) => {
     const history = useHistory();
 
-    const [name, setName] = useState(exercise.name);
-    const [reps, setReps] = useState(exercise.reps);
-    const [weight, setWeight] = useState(exercise.weight);
-    const [unit, setUnit] = useState(exercise.unit);
-    const [date, setDate] = useState(exercise.date);
+    const [name, setName] = useState(exerciseToEdit.name);
+    const [reps, setReps] = useState(exerciseToEdit.reps);
+    const [weight, setWeight] = useState(exerciseToEdit.weight);
+    const [unit, setUnit] = useState(exerciseToEdit.unit);
+    const [date, setDate] = useState(exerciseToEdit.date);
 
-    const EditExercise = async (id) => {
-        exercise = await fetch(`/exercises/:${id}`)
-        const editItems = {name, reps, weight, unit, date};
-        const response = await fetch(`/exercises:${id}`, {
-            method: 'POST',
-            body: JSON.stringify(editItems),
+    const editExercise = async () => {
+        const response = await fetch(`/exercises/${exerciseToEdit._id}`, {
+            method: 'PUT',
+            body: JSON.stringify({name: name, reps: reps, weight: weight, unit: unit}),
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-        if(response.status === 201){
-            alert("Successfully added the exercise!");
+        if(response.status === 200){
+            alert("Successfully edited the exercise!");
         } else {
-            alert(`Failed to add exercise, status code = ${response.status}`);
-        }
-        history.push("/");
+            alert(`Failed to edit exercise, status code = ${response.status}`);
+        }     history.push("/");
     };
 
     return (
@@ -33,33 +30,33 @@ export const EditExercisePage = ({exercise}) => {
             <h1>Edit Exercise</h1>
             <input
                 type="text"
-                placeholder={exercise.name}
+                placeholder={name}
                 value={name}
                 onChange={e => setName(e.target.value)} />
             <input
                 type="text"
-                placeholder={exercise.name}
+                placeholder={reps}
                 value={reps}
                 onChange={e => setReps(e.target.value)} />
             <input
                 type="text"
-                placeholder={exercise.name}
+                placeholder={weight}
                 value={weight}
                 onChange={e => setWeight(e.target.value)} />
             <select
                 onChange={e => setUnit(e.target.value)}>
-                <option value={exercise.unit}>{exercise.unit}</option>
+                <option value={unit}>{unit}</option>
                 <option value="kgs">kgs</option>
                 <option value="lbs">lbs</option>
             </select>
             <input
                 type="text"
-                placeholder={exercise.date}
+                placeholder={date}
                 value={date}
                 onChange={e => setDate(e.target.value)} />
             <button
-                onClick={EditExercise}
-            >Add</button>
+                onClick={editExercise}
+            >Edit</button>
         </div>
     );
 }
