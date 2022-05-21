@@ -38,6 +38,8 @@ header p {
 
 nav {
   margin-top: 30px;
+  padding: 1em 1.5em;
+  background-color: darkblue;
 }
 
 nav a {
