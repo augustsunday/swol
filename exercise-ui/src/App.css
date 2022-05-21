@@ -39,13 +39,14 @@ header p {
 nav {
   margin-top: 30px;
   padding: 1em 1.5em;
-  background-color: darkblue;
+  overflow: auto;
 }
 
-nav a {
+a {
   background-color: darkblue;
   color: white;
   padding: 1em 1.5em;
+  margin: 10px;
   text-decoration: none;
   text-transform: uppercase;
 }
