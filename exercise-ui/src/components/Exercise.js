@@ -2,7 +2,7 @@ import React from 'react';
 import {MdDeleteForever, BsPencilFill} from "react-icons/all";
 
 
-function Exercise({ exercise, onDelete }) {
+function Exercise({ exercise, onDelete, onEdit }) {
     return (
         <tr>
             <td>{exercise.name}</td>
@@ -12,6 +12,7 @@ function Exercise({ exercise, onDelete }) {
             <td>{exercise.date}</td>
             <td>Edit</td>
             <td><MdDeleteForever onClick={ () => onDelete(exercise._id)}/></td>
+            <td><BsPencilFill onClick={ () => onEdit(exercise._id)}/></td>
         </tr>
     );
 }

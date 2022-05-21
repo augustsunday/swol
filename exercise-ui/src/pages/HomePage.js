@@ -24,6 +24,17 @@ function HomePage() {
         }
     }
 
+    const onEdit = async id => {
+        const response = await fetch(`/exercises/${id}`, { method: 'DELETE' });
+        if (response.status === 204) {
+            const getResponse = await fetch('/exercises');
+            const exercises = await getResponse.json();
+            setExercises(exercises);
+        } else {
+            console.error(`Failed to delete exercise with id = ${id}, status code = ${response.status}`)
+        }
+    }
+
     useEffect(() => {
         loadExercises();
     }, []);
@@ -31,7 +42,7 @@ function HomePage() {
     return (
         <>
             <h2>List of Exercises</h2>
-            <ExerciseList exercises={exercises} onDelete={onDelete}></ExerciseList>
+            <ExerciseList exercises={exercises} onDelete={onDelete} onEdit={onEdit}></ExerciseList>
             <Link to="/add-exercise">Add a exercise</Link>
         </>
     );
