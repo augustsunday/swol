@@ -1,38 +1,100 @@
 body {
-  background-color: rgb(255,255,255);
+  font-family: Helvetica, sans-serif;
+  background-color: khaki;
+  color: darkblue;
+  margin: 5px;
+  padding: 5px
+}
+
+tr th {
+  border: 1px solid #ddd;
+  padding: 12px 8px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+tr td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  background:   #ffffff;
+  color: darkblue;
+}
+
+input, button {
+  font-family: Helvetica, sans-serif;
+}
+
+header h1 {
+  font-size: 150px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+header p {
+  font-style: oblique;
+  margin-top: 0;
+}
+
+nav {
+  margin-top: 30px;
+}
+
+nav a {
+  background-color: darkblue;
+  color: white;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+footer {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
 }
 
 .App {
   text-align: center;
+  width: 25%;
+  min-width: fit-content;
+  margin: 0 auto;
+  min-height: 100vh;
 }
 
+
 .App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  margin-top: 5%;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: black;
+  display: flex;
+  flex-direction: column;
 }
+
+.app-title {
+  font-size: larger;
+}
+
+/*.App-header {*/
+/*  min-height: 100vh;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  font-size: calc(10px + 2vmin);*/
+/*  color: black;*/
+/*}*/
 
 .App-link {
   color: #61dafb;
 }
 
-td, th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2;}
-
-tr:hover {background-color: #ddd;}
-
-th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
+Link {
+  border-radius: 25px;
+  background-color: cadetblue;
+  width: 25%;
+  padding: 10px;
+  margin: 10px;
 }

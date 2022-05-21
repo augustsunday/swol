@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AddExercisePage from './pages/AddExercisePage';
 import EditExercisePage from './pages/EditExercisePage';
+import Navigation from "./components/Navigation";
 
 function App() {
   const [exerciseToEdit, setExerciseToEdit] = useState([]);
@@ -11,7 +12,12 @@ function App() {
 
   return (
     <div className="App">
+      <header>
+        <h1 id="app-title">SWōL</h1>
+        <p>Fitness Tracking for Minimalists</p>
+      </header>
       <Router>
+          <Navigation/>
         <div className="App-header">
           <Route path="/" exact>
             <HomePage  setExerciseToEdit={setExerciseToEdit}/>
@@ -24,6 +30,9 @@ function App() {
           </Route>
           </div>
       </Router>
+      <footer>
+        <p id="copyright">©2022 Colin Cummins</p>
+      </footer>
     </div>
   );
 }
