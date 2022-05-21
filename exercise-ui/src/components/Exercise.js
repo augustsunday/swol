@@ -10,9 +10,8 @@ function Exercise({ exercise, onDelete, onEdit }) {
             <td>{exercise.weight}</td>
             <td>{exercise.unit}</td>
             <td>{exercise.date}</td>
-            <td>Edit</td>
-            <td><MdDeleteForever onClick={ () => onDelete(exercise._id)}/></td>
             <td><BsPencilFill onClick={ () => onEdit(exercise)}/></td>
+            <td><MdDeleteForever onClick={ () => onDelete(exercise._id)}/></td>
         </tr>
     );
 }

@@ -96,7 +96,7 @@ app.delete('/exercises/:_id',
  */
 app.use((err, req, res, next) => {
     console.log("Error: ", err.name)
-    console.log(err)
+    console.log(req.body)
     switch (err.name) {
         case "ReferenceError":
             res.status(404).type("application/json").send({ Error: "Not found"})

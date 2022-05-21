@@ -13,7 +13,7 @@ export const EditExercisePage = ({exerciseToEdit}) => {
     const editExercise = async () => {
         const response = await fetch(`/exercises/${exerciseToEdit._id}`, {
             method: 'PUT',
-            body: JSON.stringify({name: name, reps: reps, weight: weight, unit: unit}),
+            body: JSON.stringify({name: name, reps: reps, weight: weight, unit: unit, date: date}),
             headers: {
                 'Content-Type': 'application/json',
             },
