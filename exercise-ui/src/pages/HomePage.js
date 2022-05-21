@@ -42,7 +42,7 @@ function HomePage() {
     return (
         <>
             <h2>List of Exercises</h2>
-            <ExerciseList exercises={exercises} onDelete={onDelete} onEdit={onEdit}></ExerciseList>
+            <ExerciseList exercises={exercises} onDelete={onDelete} onEdit={onEdit} />
             <Link to="/add-exercise">Add a exercise</Link>
         </>
     );
