@@ -28,32 +28,52 @@ export const EditExercisePage = ({exerciseToEdit}) => {
     return (
         <div>
             <h1>Edit Exercise</h1>
-            <input
+            <div className="input_block">
+                <label for="Name">Name</label><br/>
+                <input
+                name="name"
                 type="text"
                 placeholder={name}
                 value={name}
                 onChange={e => setName(e.target.value)} />
-            <input
+            </div>
+            <div className="input_block">
+                <label for="reps">Reps</label><br/>
+                <input
+                name="reps"
                 type="text"
                 placeholder={reps}
                 value={reps}
                 onChange={e => setReps(e.target.value)} />
-            <input
-                type="text"
-                placeholder={weight}
-                value={weight}
-                onChange={e => setWeight(e.target.value)} />
-            <select
+            </div>
+            <div className="input_block">
+                <label for="weight">Weight</label><br/>
+                <input
+                    name="weight"
+                    type="text"
+                    placeholder={weight}
+                    value={weight}
+                    onChange={e => setWeight(e.target.value)} />
+            </div>
+            <div className="input_block">
+                <label for="unit">Unit</label><br/>
+                <select
+                name="unit"
                 onChange={e => setUnit(e.target.value)}>
                 <option value={unit}>{unit}</option>
                 <option value="kgs">kgs</option>
                 <option value="lbs">lbs</option>
             </select>
-            <input
+            </div>
+            <div className="input_block">
+                <label for="date">Date</label><br/>
+                <input
+                name="date"
                 type="text"
                 placeholder={date}
                 value={date}
                 onChange={e => setDate(e.target.value)} />
+            </div>
             <button
                 onClick={editExercise}
             >Edit</button>
