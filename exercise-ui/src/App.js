@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <header>
         <h1 id="app-title">SWōL</h1>
-        <p>Fitness Tracking for Minimalists</p>
+        <p>The Simple WOrkout Log</p>
       </header>
       <Router>
           <Navigation/>
