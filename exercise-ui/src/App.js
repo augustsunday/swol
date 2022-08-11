@@ -8,13 +8,12 @@ import Navigation from "./components/Navigation";
 
 function App() {
   const [exerciseToEdit, setExerciseToEdit] = useState([]);
-  console.log(exerciseToEdit)
 
   return (
     <div className="App">
       <header>
         <h1 id="app-title">SWōL</h1>
-        <p>The Simple WOrkout Log</p>
+        <p>The Simple Workout Log</p>
       </header>
       <Router>
           <Navigation/>
