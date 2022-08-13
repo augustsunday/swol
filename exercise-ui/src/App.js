@@ -5,6 +5,7 @@ import ProtectedRoute from "./auth/protected-route";
 import HomePage from './pages/HomePage';
 import AddExercisePage from './pages/AddExercisePage';
 import EditExercisePage from './pages/EditExercisePage';
+import LoginPage from "./pages/LoginPage";
 import Navigation from "./components/Navigation";
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
                     </Route>
                     <Route path="/edit-exercise">
                         <EditExercisePage exerciseToEdit={exerciseToEdit}/>
+                    </Route>
+                    <Route path="/login">
+                        <LoginPage/>
                     </Route>
                 </div>
             </Router>
