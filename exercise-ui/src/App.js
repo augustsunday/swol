@@ -1,6 +1,7 @@
 import './App.css';
 import React, {useState} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ProtectedRoute from "./auth/protected-route";
 import HomePage from './pages/HomePage';
 import AddExercisePage from './pages/AddExercisePage';
 import EditExercisePage from './pages/EditExercisePage';
@@ -18,9 +19,9 @@ function App() {
             <Router>
                 <Navigation/>
                 <div className="App-header">
-                    <Route path="/" exact>
+                    <ProtectedRoute path="/" exact>
                         <HomePage setExerciseToEdit={setExerciseToEdit}/>
-                    </Route>
+                    </ProtectedRoute>
                     <Route path="/add-exercise">
                         <AddExercisePage/>
                     </Route>
