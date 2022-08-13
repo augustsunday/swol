@@ -5,11 +5,9 @@ import HomePage from './pages/HomePage';
 import AddExercisePage from './pages/AddExercisePage';
 import EditExercisePage from './pages/EditExercisePage';
 import Navigation from "./components/Navigation";
-import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
   const [exerciseToEdit, setExerciseToEdit] = useState([]);
-  const { isAuthenticated } = useAuth0();
 
   return (
     <div className="App">
