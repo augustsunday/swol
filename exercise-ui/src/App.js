@@ -9,6 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
   const [exerciseToEdit, setExerciseToEdit] = useState([]);
+  const { isAuthenticated } = useAuth0();
 
   return (
     <div className="App">
@@ -16,20 +17,20 @@ function App() {
         <h1 id="app-title">SWōL</h1>
         <p>The Simple Workout Log</p>
       </header>
-      <Router>
-          <Navigation/>
-        <div className="App-header">
-          <Route path="/" exact>
-            <HomePage  setExerciseToEdit={setExerciseToEdit}/>
-          </Route>
-          <Route path="/add-exercise">
-            <AddExercisePage />
-          </Route>
-          <Route path="/edit-exercise">
-            <EditExercisePage exerciseToEdit = {exerciseToEdit}/>
-          </Route>
-          </div>
-      </Router>
+            <Router>
+                <Navigation/>
+                <div className="App-header">
+                    <Route path="/" exact>
+                        <HomePage setExerciseToEdit={setExerciseToEdit}/>
+                    </Route>
+                    <Route path="/add-exercise">
+                        <AddExercisePage/>
+                    </Route>
+                    <Route path="/edit-exercise">
+                        <EditExercisePage exerciseToEdit={exerciseToEdit}/>
+                    </Route>
+                </div>
+            </Router>
       <footer>
         <p id="copyright">©2022 Colin Cummins</p>
       </footer>
