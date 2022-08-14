@@ -7,6 +7,8 @@ import AddExercisePage from './pages/AddExercisePage';
 import EditExercisePage from './pages/EditExercisePage';
 import LoginPage from "./pages/LoginPage";
 import Navigation from "./components/Navigation";
+import {withAuthenticationRequired} from "@auth0/auth0-react";
+
 
 function App() {
   const [exerciseToEdit, setExerciseToEdit] = useState([]);
@@ -23,9 +25,7 @@ function App() {
                     <Route path="/" exact>
                         <HomePage setExerciseToEdit={setExerciseToEdit}/>
                     </Route>
-                    <ProtectedRoute path="/add-exercise">
-                        <AddExercisePage/>
-                    </ProtectedRoute>
+                    <Route path="/add-exercise" component={withAuthenticationRequired(AddExercisePage)} />
                     <Route path="/edit-exercise">
                         <EditExercisePage exerciseToEdit={exerciseToEdit}/>
                     </Route>
