@@ -1,7 +1,6 @@
 import './App.css';
 import React, {useState} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import ProtectedRoute from "./auth/protected-route";
 import HomePage from './pages/HomePage';
 import AddExercisePage from './pages/AddExercisePage';
 import EditExercisePage from './pages/EditExercisePage';
