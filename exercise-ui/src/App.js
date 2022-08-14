@@ -20,12 +20,12 @@ function App() {
             <Router>
                 <Navigation/>
                 <div className="App-header">
-                    <ProtectedRoute path="/" exact>
+                    <Route path="/" exact>
                         <HomePage setExerciseToEdit={setExerciseToEdit}/>
-                    </ProtectedRoute>
-                    <Route path="/add-exercise">
-                        <AddExercisePage/>
                     </Route>
+                    <ProtectedRoute path="/add-exercise">
+                        <AddExercisePage/>
+                    </ProtectedRoute>
                     <Route path="/edit-exercise">
                         <EditExercisePage exerciseToEdit={exerciseToEdit}/>
                     </Route>
