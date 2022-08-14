@@ -25,9 +25,7 @@ function App() {
                         <HomePage setExerciseToEdit={setExerciseToEdit}/>
                     </Route>
                     <Route path="/add-exercise" component={withAuthenticationRequired(AddExercisePage)} />
-                    <Route path="/edit-exercise">
-                        <EditExercisePage exerciseToEdit={exerciseToEdit}/>
-                    </Route>
+                    <Route path="/edit-exercise" component={withAuthenticationRequired(EditExercisePage)} exerciseToEdit={exerciseToEdit}/>
                     <Route path="/login">
                         <LoginPage/>
                     </Route>
