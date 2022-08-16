@@ -6,3 +6,5 @@
 /exercise-api/node_modules/
 /.idea/dataSources.xml
 /exercise-ui/.env
+/exercise-ui/key.pem
+/exercise-ui/keytmp.pem
