@@ -6,11 +6,13 @@ import AddExercisePage from './pages/AddExercisePage';
 import EditExercisePage from './pages/EditExercisePage';
 import LoginPage from "./pages/LoginPage";
 import Navigation from "./components/Navigation";
-import {withAuthenticationRequired} from "@auth0/auth0-react";
+import {useAuth0, withAuthenticationRequired} from "@auth0/auth0-react";
 
 
 function App() {
   const [exerciseToEdit, setExerciseToEdit] = useState([]);
+  const isAuthenticated = useAuth0();
+  const ProtectedEditExercise = withAuthenticationRequired(EditExercisePage)
 
   return (
     <div className="App">
@@ -26,8 +28,13 @@ function App() {
                     </Route>
                     <Route path="/add-exercise" component={withAuthenticationRequired(AddExercisePage)} />
                     <Route path="/edit-exercise">
-                        <EditExercisePage exerciseToEdit={exerciseToEdit}/>
+                        <ProtectedEditExercise exerciseToEdit={exerciseToEdit}/>
                     </Route>
+                    {/*<Route render={(isAuthenticated) => (*/}
+                    {/*    isAuthenticated === true*/}
+                    {/*   ? <EditExercisePage exerciseToEdit={exerciseToEdit} />*/}
+                    {/*       : <Redirect to="/login" />*/}
+                    {/*)} />*/}
                     <Route path="/login">
                         <LoginPage/>
                     </Route>
