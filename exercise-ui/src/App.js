@@ -23,9 +23,9 @@ function App() {
             <Router>
                 <Navigation/>
                 <div className="App-header">
-                    <ProtectedRoute auth = {isAuthenticated} path="/" exact>
+                    <Route auth = {isAuthenticated} path="/" exact>
                         <HomePage setExerciseToEdit={setExerciseToEdit}/>
-                    </ProtectedRoute>
+                    </Route>
                     <ProtectedRoute auth = {isAuthenticated} path="/add-exercise">
                         <AddExercisePage />
                     </ProtectedRoute>
