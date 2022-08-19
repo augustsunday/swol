@@ -14,6 +14,12 @@ function App() {
   const [exerciseToEdit, setExerciseToEdit] = useState([]);
   const {isAuthenticated} = useAuth0();
 
+  const { isLoading } = useAuth0();
+
+  if (isLoading) {
+      return <p>Loading</p>
+  }
+
   return (
     <div className="App">
       <header>
