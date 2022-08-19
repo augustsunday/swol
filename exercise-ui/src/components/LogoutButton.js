@@ -5,7 +5,7 @@ const LogoutButton = () => {
     const { logout } = useAuth0();
 
     return (
-        <button onClick={() => logout({returnTo:"https://localhost:8000/login"})}>
+        <button onClick={() => logout()}>
             Log Out
         </button>
     );
