@@ -9,7 +9,7 @@ function ProtectedRoute({ children, auth, path, ...rest }) {
         <Route
             path={path}
             render={() => {
-                return auth ? children : <Redirect to='/login' />;
+                return auth ? children : <Redirect to='/' />;
             }}
             {...rest}
         />

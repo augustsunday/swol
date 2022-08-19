@@ -23,23 +23,18 @@ function App() {
             <Router>
                 <Navigation/>
                 <div className="App-header">
-                    <Route auth = {isAuthenticated} path="/" exact>
-                        <HomePage setExerciseToEdit={setExerciseToEdit}/>
+                    <Route path="/" exact>
+                        <LoginPage/>
                     </Route>
+                    <ProtectedRoute auth = {isAuthenticated} path="/home">
+                        <HomePage setExerciseToEdit={setExerciseToEdit}/>
+                    </ProtectedRoute>
                     <ProtectedRoute auth = {isAuthenticated} path="/add-exercise">
                         <AddExercisePage />
                     </ProtectedRoute>
                     <ProtectedRoute auth = {isAuthenticated} path="/edit-exercise">
                         <EditExercisePage exerciseToEdit={exerciseToEdit}/>
                     </ProtectedRoute>
-                    {/*<Route render={(isAuthenticated) => (*/}
-                    {/*    isAuthenticated === true*/}
-                    {/*   ? <EditExercisePage exerciseToEdit={exerciseToEdit} />*/}
-                    {/*       : <Redirect to="/login" />*/}
-                    {/*)} />*/}
-                    <Route path="/login">
-                        <LoginPage/>
-                    </Route>
                 </div>
             </Router>
       <footer>
