@@ -6,7 +6,7 @@ function Navigation () {
     return (
         <>
         <nav>
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="/add-exercise">Create Exercise</Link>
         </nav>
         <AuthenticationButton />

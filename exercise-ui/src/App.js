@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AddExercisePage from './pages/AddExercisePage';
 import EditExercisePage from './pages/EditExercisePage';
-import LoginPage from "./pages/LoginPage";
 import Navigation from "./components/Navigation";
 import ProtectedRoute from "./components/ProtectedRoute";
 import {useAuth0} from "@auth0/auth0-react";
@@ -30,11 +29,8 @@ function App() {
                 <Navigation/>
                 <div className="App-header">
                     <Route path="/" exact>
-                        <LoginPage/>
-                    </Route>
-                    <ProtectedRoute auth = {isAuthenticated} path="/home">
                         <HomePage setExerciseToEdit={setExerciseToEdit}/>
-                    </ProtectedRoute>
+                    </Route>
                     <ProtectedRoute auth = {isAuthenticated} path="/add-exercise">
                         <AddExercisePage />
                     </ProtectedRoute>

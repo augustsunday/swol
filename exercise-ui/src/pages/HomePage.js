@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import ExerciseList from '../components/ExerciseList';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useAuth0} from "@auth0/auth0-react";
+
 
 function HomePage({setExerciseToEdit}) {
     const [exercises, setExercises] = useState([]);
     const history = useHistory()
+    const { isAuthenticated, isLoading } = useAuth0();
 
     const loadExercises = async () => {
         const response = await fetch('/exercises');
@@ -34,12 +37,23 @@ function HomePage({setExerciseToEdit}) {
         loadExercises();
     }, []);
 
+    if (isLoading) {
+    return(
+        <p>Loading...</p>
+    )}
+
     return (
+        isAuthenticated ?
         <>
             <h1>Exercise History</h1>
             <ExerciseList exercises={exercises} onDelete={onDelete} onEdit={onEdit} setExerciseToEdit={setExerciseToEdit}/>
             <Link to="/add-exercise">Create Exercise</Link>
         </>
+            :
+            <>
+                <p>Please Log In</p>
+            </>
+
     );
 }
 
