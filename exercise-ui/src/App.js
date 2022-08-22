@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage';
 import AddExercisePage from './pages/AddExercisePage';
 import EditExercisePage from './pages/EditExercisePage';
 import Navigation from "./components/Navigation";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./auth/ProtectedRoute";
 import {useAuth0} from "@auth0/auth0-react";
 
 
