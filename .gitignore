@@ -8,3 +8,4 @@
 /exercise-ui/.env
 /exercise-ui/key.pem
 /exercise-ui/keytmp.pem
+/exercise-ui/src/.env
