@@ -8,9 +8,11 @@ import Auth0ProviderWithHistory from "./auth/Auth0-provider-with-history";
 ReactDOM.render(
   <React.StrictMode>
       <BrowserRouter>
-    <Auth0ProviderWithHistory domain={process.env.REACT_APP_AUTH0_DOMAIN}
-                   clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
-                   redirectUri={window.location.origin}>
+    <Auth0ProviderWithHistory
+        domain={process.env.REACT_APP_AUTH0_DOMAIN}
+        clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
+        redirectUri={window.location.origin}
+        audience={process.env.REACT_APP_AUTH0_AUDIENCE}>
     <App />
     </Auth0ProviderWithHistory>
       </BrowserRouter>
