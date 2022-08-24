@@ -9,3 +9,4 @@
 /exercise-ui/key.pem
 /exercise-ui/keytmp.pem
 /exercise-ui/src/.env
+/exercise-api/http-client.private.env.json

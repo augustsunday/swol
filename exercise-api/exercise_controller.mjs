@@ -3,12 +3,17 @@ import * as exercise from './exercise_model.mjs';
 import express from 'express';
 import expressAsyncHandler from "express-async-handler";
 import e from "express";
+import { auth } from "express-oauth2-jwt-bearer";
+
 
 const PORT = process.env.PORT;
-
 const app = express();
-
+const checkJwt = auth({
+    audience: process.env.AUTH0_API,
+    issuerBaseURL: process.env.AUTH0_DOMAIN
+})
 app.use(express.json());
+app.use(checkJwt);
 
 /**
  * Create a new exercise record

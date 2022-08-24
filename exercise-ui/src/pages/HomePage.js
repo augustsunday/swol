@@ -11,6 +11,7 @@ function HomePage({setExerciseToEdit}) {
     const history = useHistory()
     const { isAuthenticated, isLoading } = useAuth0();
 
+
     const loadExercises = async () => {
         const response = await fetch('/exercises');
         const exercises = await response.json();
