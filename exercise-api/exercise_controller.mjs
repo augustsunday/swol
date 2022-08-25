@@ -13,7 +13,6 @@ const checkJwt = auth({
     issuerBaseURL: process.env.AUTH0_DOMAIN
 })
 app.use(express.json());
-app.use(checkJwt);
 
 /**
  * Create a new exercise record
