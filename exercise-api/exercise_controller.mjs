@@ -28,6 +28,7 @@ app.post("/exercises",
  */
 app.get("/exercises",
     expressAsyncHandler(async (req, res, next) => {
+        console.log(JSON.stringify(req.headers))
         const new_query = await exercise.retrieveExercise({});
         res.status(200).type("application/json").send(new_query);
     }))
