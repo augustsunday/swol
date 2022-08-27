@@ -20,9 +20,9 @@ function HomePage({setExerciseToEdit}) {
     }
 
     const onDelete = async id => {
-        const response = await fetch(`/exercises/${id}`, { method: 'DELETE' });
+        const response = await fetchWrapper(`/exercises/${id}`, { method: 'DELETE' });
         if (response.status === 204) {
-            const getResponse = await fetch('/exercises');
+            const getResponse = await fetchWrapper('/exercises');
             const exercises = await getResponse.json();
             setExercises(exercises);
         } else {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import fetchWrapper from "../auth/fetchWrapper";
 
 export const EditExercisePage = ({exerciseToEdit}) => {
     const history = useHistory();
@@ -11,7 +12,7 @@ export const EditExercisePage = ({exerciseToEdit}) => {
     const [date, setDate] = useState(exerciseToEdit.date);
 
     const editExercise = async () => {
-        const response = await fetch(`/exercises/${exerciseToEdit._id}`, {
+        const response = await fetchWrapper(`/exercises/${exerciseToEdit._id}`, {
             method: 'PUT',
             body: JSON.stringify({name: name, reps: reps, weight: weight, unit: unit, date: date}),
             headers: {
