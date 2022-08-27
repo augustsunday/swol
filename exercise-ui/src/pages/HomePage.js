@@ -4,6 +4,7 @@ import ExerciseList from '../components/ExerciseList';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth0} from "@auth0/auth0-react";
+import fetchWrapper from "../auth/fetchWrapper";
 
 
 function HomePage({setExerciseToEdit}) {
@@ -13,7 +14,7 @@ function HomePage({setExerciseToEdit}) {
 
 
     const loadExercises = async () => {
-        const response = await fetch('/exercises');
+        const response = await fetchWrapper('/exercises');
         const exercises = await response.json();
         setExercises(exercises);
     }
