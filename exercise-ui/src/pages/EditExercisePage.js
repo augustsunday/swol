@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
-import fetchWrapper from "../auth/fetchWrapper";
+import AuthModule from "../auth/AuthModule";
+import {useAuth0} from "@auth0/auth0-react";
 
 export const EditExercisePage = ({exerciseToEdit}) => {
     const history = useHistory();
+
+    const {getAccessTokenSilently} = useAuth0();
+    const token = getAccessTokenSilently()
+    const auth = new AuthModule()
+    auth.setToken(token)
 
     const [name, setName] = useState(exerciseToEdit.name);
     const [reps, setReps] = useState(exerciseToEdit.reps);
@@ -12,7 +18,7 @@ export const EditExercisePage = ({exerciseToEdit}) => {
     const [date, setDate] = useState(exerciseToEdit.date);
 
     const editExercise = async () => {
-        const response = await fetchWrapper(`/exercises/${exerciseToEdit._id}`, {
+        const response = await auth.fetch(`/exercises/${exerciseToEdit._id}`, {
             method: 'PUT',
             body: JSON.stringify({name: name, reps: reps, weight: weight, unit: unit, date: date}),
             headers: {

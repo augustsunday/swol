@@ -4,25 +4,29 @@ import ExerciseList from '../components/ExerciseList';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth0} from "@auth0/auth0-react";
-import fetchWrapper from "../auth/fetchWrapper";
+import AuthModule from "../auth/AuthModule";
 
 
 function HomePage({setExerciseToEdit}) {
     const [exercises, setExercises] = useState([]);
     const history = useHistory()
-    const { isAuthenticated, isLoading } = useAuth0();
+    const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+
+    const token = getAccessTokenSilently()
+    const auth = new AuthModule()
+    auth.setToken(token)
 
 
     const loadExercises = async () => {
-        const response = await fetchWrapper('/exercises');
+        const response = await auth.fetch('/exercises');
         const exercises = await response.json();
         setExercises(exercises);
     }
 
     const onDelete = async id => {
-        const response = await fetchWrapper(`/exercises/${id}`, { method: 'DELETE' });
+        const response = await auth.fetch(`/exercises/${id}`, { method: 'DELETE' });
         if (response.status === 204) {
-            const getResponse = await fetchWrapper('/exercises');
+            const getResponse = await auth.fetch('/exercises');
             const exercises = await getResponse.json();
             setExercises(exercises);
         } else {
