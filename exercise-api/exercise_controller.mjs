@@ -12,7 +12,7 @@ const checkJwt = auth({
     audience: process.env.AUTH0_API,
     issuerBaseURL: process.env.AUTH0_DOMAIN
 })
-app.use(express.json());
+app.use(express.json(checkJwt));
 
 /**
  * Create a new exercise record
@@ -28,7 +28,7 @@ app.post("/exercises",
  */
 app.get("/exercises",
     expressAsyncHandler(async (req, res, next) => {
-        console.log(JSON.stringify(req.headers))
+        console.log(JSON.stringify(req.headers.authorization))
         const new_query = await exercise.retrieveExercise({});
         res.status(200).type("application/json").send(new_query);
     }))
