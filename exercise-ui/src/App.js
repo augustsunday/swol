@@ -7,6 +7,7 @@ import EditExercisePage from './pages/EditExercisePage';
 import Navigation from "./components/Navigation";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import {useAuth0} from "@auth0/auth0-react";
+import LoginPage from "./pages/LoginPage";
 
 
 function App() {
@@ -29,8 +30,11 @@ function App() {
                 <Navigation/>
                 <div className="App-header">
                     <Route path="/" exact>
-                        <HomePage setExerciseToEdit={setExerciseToEdit}/>
+                        <LoginPage/>
                     </Route>
+                    <ProtectedRoute auth = {isAuthenticated} path="/home">
+                        <HomePage setExerciseToEdit={setExerciseToEdit}/>
+                    </ProtectedRoute>
                     <ProtectedRoute auth = {isAuthenticated} path="/add-exercise">
                         <AddExercisePage />
                     </ProtectedRoute>

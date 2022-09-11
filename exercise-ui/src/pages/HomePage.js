@@ -10,7 +10,7 @@ import AuthModule from "../auth/AuthModule";
 function HomePage({setExerciseToEdit}) {
     const [exercises, setExercises] = useState([]);
     const history = useHistory()
-    const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+    const { isLoading, getAccessTokenSilently } = useAuth0();
 
     const token = getAccessTokenSilently()
     const auth = new AuthModule()
@@ -49,17 +49,11 @@ function HomePage({setExerciseToEdit}) {
     )}
 
     return (
-        isAuthenticated ?
         <>
             <h1>Exercise History</h1>
             <ExerciseList exercises={exercises} onDelete={onDelete} onEdit={onEdit} setExerciseToEdit={setExerciseToEdit}/>
             <Link to="/add-exercise">Create Exercise</Link>
         </>
-            :
-            <>
-                <p>Please Log In</p>
-            </>
-
     );
 }
 

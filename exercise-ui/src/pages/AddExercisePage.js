@@ -24,7 +24,7 @@ export const AddExercisePage = () => {
         } else {
             alert(`Failed to add exercise, status code = ${response.status}`);
         }
-        history.push("/");
+        history.push("/home");
     };
 
     return (
