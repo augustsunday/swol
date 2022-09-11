@@ -29,7 +29,7 @@ export const EditExercisePage = ({exerciseToEdit}) => {
             alert("Successfully edited the exercise!");
         } else {
             alert(`Failed to edit exercise, status code = ${response.status}`);
-        }     history.push("/");
+        }     history.push("/home");
     };
 
     return (
