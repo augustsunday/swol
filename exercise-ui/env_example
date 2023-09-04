@@ -1,0 +1,4 @@
+# Create a .env file in the current directory using this template
+
+# Port the UI will accept connections on
+PORT=XXXX
