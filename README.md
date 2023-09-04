@@ -51,6 +51,6 @@ These tests are meant to be run on an empty database and may not function proper
 ## License
 Copyright &copy; Colin Cummins 2023
 
-## UI Screenshot
+## UI Example 
 
 <img width="1458" alt="swol_readme" src="https://github.com/augustsunday/swol/assets/84826067/dedf46c1-5fc6-451b-91d9-f51fb0ca6b51">
