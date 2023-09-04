@@ -50,3 +50,5 @@ These tests are meant to be run on an empty database and may not function proper
 * User authentication using Auth0 (currently in development - see branch)
 ## License
 Copyright &copy; Colin Cummins 2023
+
+<img width="1458" alt="swol_readme" src="https://github.com/augustsunday/swol/assets/84826067/dedf46c1-5fc6-451b-91d9-f51fb0ca6b51">
